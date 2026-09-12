@@ -1,0 +1,2 @@
+{ "name": "association-set-examples", "private": true, "type": "module",
+  "dependencies": { "@intelena/association-set": "workspace:*", "@intelena/shielded-notes": "file:../../shielded-notes/packages/core" } }

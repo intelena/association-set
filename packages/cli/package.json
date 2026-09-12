@@ -1,0 +1,17 @@
+{
+  "name": "@intelena/association-set-cli",
+  "version": "0.1.0",
+  "description": "CLI for @intelena/association-set — build, verify, prove and diff association-set snapshots.",
+  "license": "MIT",
+  "type": "module",
+  "bin": { "association-set": "./dist/cli.js" },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": { "@intelena/association-set": "workspace:*" },
+  "repository": { "type": "git", "url": "https://github.com/intelena/association-set", "directory": "packages/cli" }
+}

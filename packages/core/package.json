@@ -1,0 +1,23 @@
+{
+  "name": "@intelena/association-set",
+  "version": "0.1.0",
+  "description": "Curate proof-of-innocence association sets from shielded-pool deposits: policy rules, Merkle snapshots, membership proofs, diffs.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist", "README.md"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@intelena/shielded-notes": "file:../../../shielded-notes/packages/core"
+  },
+  "keywords": ["privacy", "proof-of-innocence", "association-set", "privacy-pools", "compliance", "merkle", "intelena"],
+  "repository": { "type": "git", "url": "https://github.com/intelena/association-set", "directory": "packages/core" }
+}
