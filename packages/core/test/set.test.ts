@@ -118,3 +118,17 @@ describe("proof of innocence", () => {
     expect(registry.current).toBe(r3);
   });
 });
+
+describe("innocenceProofId", () => {
+  it("is stable per (root, origin), prefixed poi_, and reveals neither", async () => {
+    const { innocenceProofId } = await import("../src/index.js");
+    const origin = deposit();
+    const { set } = buildSet(basePolicy, [origin, deposit()], ctx);
+    const w = buildInnocenceWitness(set, origin.commitment)!;
+    const id = innocenceProofId(w);
+    expect(id).toMatch(/^poi_[0-9a-f]{12}$/);
+    expect(innocenceProofId(w)).toBe(id);
+    expect(id).not.toContain(origin.commitment.slice(2, 10));
+    expect(innocenceProofId({ ...w, private: { ...w.private, origin: deposit().commitment } })).not.toBe(id);
+  });
+});

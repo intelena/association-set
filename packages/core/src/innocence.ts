@@ -1,4 +1,4 @@
-import { verifyProof } from "@intelena/shielded-notes";
+import { fromHex, hashFields, verifyProof } from "@intelena/shielded-notes";
 import type { AssociationSet } from "./set.js";
 import type { Hex32, InnocenceRejection, InnocenceWitness } from "./types.js";
 
@@ -53,4 +53,16 @@ export class RootRegistry {
   known(): Hex32[] {
     return [...this.roots];
   }
+}
+
+/**
+ * Short, display-safe id for a proof of innocence, matching the `poi_…` ids
+ * the Intelena dapp shows in the Proofs tab: derived from the set root and the
+ * origin so the same proof always gets the same id, without leaking either.
+ */
+export function innocenceProofId(witness: InnocenceWitness): string {
+  const material = fromHex(witness.public.setRoot);
+  const origin = fromHex(witness.private.origin);
+  const digest = hashFields("intelena/poi-id", [material, origin]);
+  return `poi_${digest.slice(2, 14)}`;
 }
