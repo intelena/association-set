@@ -19,8 +19,10 @@ jobs:
         with:
           repository: intelena/shielded-notes
           path: shielded-notes
-      # pnpm version comes from package.json "packageManager" (setting `version` here as well makes the action fail with "Multiple versions of pnpm specified").
+      # The repo is checked out under main/, so point the action at that package.json for the pnpm version.
       - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: main/package.json
       - uses: actions/setup-node@v4
         with:
           node-version: 22
