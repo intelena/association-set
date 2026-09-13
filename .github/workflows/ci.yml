@@ -30,6 +30,7 @@ jobs:
         working-directory: shielded-notes
         run: pnpm install --frozen-lockfile && pnpm build
       - run: pnpm install --frozen-lockfile
-      - run: pnpm typecheck
+      # Build first: the CLI package typechecks against core's dist.
       - run: pnpm build
+      - run: pnpm typecheck
       - run: pnpm test
